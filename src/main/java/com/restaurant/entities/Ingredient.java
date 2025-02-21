@@ -22,7 +22,7 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return ingredientId == that.ingredientId && ingredientPrice == that.ingredientPrice && Float.compare(quantity, that.quantity) == 0 && Objects.equals(ingredientName, that.ingredientName) && unit == that.unit;
+        return ingredientId == that.ingredientId && ingredientPrice == that.ingredientPrice && Double.compare(quantity, that.quantity) == 0 && Objects.equals(ingredientName, that.ingredientName) && unit == that.unit;
     }
 
     @Override

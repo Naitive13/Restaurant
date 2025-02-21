@@ -45,8 +45,18 @@ public class Dish {
         return ingredientList;
     }
 
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "dishId=" + dishId +
+                ", dishName='" + dishName + '\'' +
+                ", dishPrice=" + dishPrice +
+                ", ingredientList=" + ingredientList +
+                '}';
+    }
+
     // my stuff
-    public float getIngredientsCost(){
+    public double getProductionCost(){
 //       float result = 0;
 //       for (Ingredient ingredient:this.getIngredientList()){
 //           result+= ingredient.getIngredientPrice()*ingredient.getQuantity();

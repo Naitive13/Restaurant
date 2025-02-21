@@ -4,10 +4,8 @@ import com.restaurant.db.Datasource;
 import com.restaurant.entities.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class DishDAO {
         }
 
         String query = "SELECT dish_id, dish_name, dish_price FROM dish WHERE 1=1";
-        String orderBy = "ORDER BY dish_id ASC";
+        String orderBy = " ORDER BY dish_id ASC";
         String dishName = null;
         int dishId = 0, dishIdIndex = 0, dishNameIndex = 0, dishPrice = 0, dishPriceIndex = 0, counter = 1;
 
@@ -100,11 +98,11 @@ public class DishDAO {
                 ResultSet rs2 = st2.executeQuery();
                 while (rs2.next()){
                     ingredientList.add(new Ingredient(
-                            rs2.getInt("ingredient.ingredientId"),
-                            rs2.getString("ingredient.ingredient_name"),
-                            UnitType.valueOf(rs2.getString("ingredient.unit")),
-                            rs2.getInt("ingredient_price.unit_price"),
-                            rs2.getFloat("dish_ingredient.quantity")
+                            rs2.getInt("ingredient_id"),
+                            rs2.getString("ingredient_name"),
+                            UnitType.valueOf(rs2.getString("unit")),
+                            rs2.getInt("unit_price"),
+                            rs2.getFloat("quantity")
                     ));
                 }
                 result.add(new Dish(
