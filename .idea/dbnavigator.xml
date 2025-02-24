@@ -6,7 +6,7 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -40,6 +40,9 @@
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/java/com/restaurant/db/testdata/data.sql" connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" session-id="MAIN" current-schema="public" />
+  </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
     <execution-history>
@@ -59,7 +62,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" active="true" signed="true">
+      <connection id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" active="false" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />

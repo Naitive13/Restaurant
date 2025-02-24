@@ -1,15 +1,16 @@
 package com.restaurant.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 public class Dish {
-    private int dishId;
-    private String dishName;
-    private int dishPrice;
-    private List<Ingredient> ingredientList;
+    private final long dishId;
+    private final String dishName;
+    private final long dishPrice;
+    private final List<Ingredient> ingredientList;
 
-    public Dish(int dishId, String dishName, int dishPrice, List<Ingredient> ingredientList) {
+    public Dish(long dishId, String dishName, long dishPrice, List<Ingredient> ingredientList) {
         this.dishId = dishId;
         this.dishName = dishName;
         this.dishPrice = dishPrice;
@@ -29,7 +30,7 @@ public class Dish {
         return Objects.hash(dishId, dishName, dishPrice, ingredientList);
     }
 
-    public int getDishId() {
+    public long getDishId() {
         return dishId;
     }
 
@@ -37,7 +38,7 @@ public class Dish {
         return dishName;
     }
 
-    public int getDishPrice() {
+    public long getDishPrice() {
         return dishPrice;
     }
 
@@ -56,14 +57,17 @@ public class Dish {
     }
 
     // my stuff
-    public double getProductionCost(){
+    public double getProductionCost(LocalDateTime dateTime) {
 //       float result = 0;
 //       for (Ingredient ingredient:this.getIngredientList()){
-//           result+= ingredient.getIngredientPrice()*ingredient.getQuantity();
+//           result+= ingredient.getIngredientPrices()*ingredient.getQuantity();
 //       }
 //        return result;
         return this.getIngredientList().stream()
-                .map((ingredient -> ingredient.getQuantity()*ingredient.getIngredientPrice()))
-                .reduce(0f, Float::sum);
+                .map((ingredient -> {
+                    Price price = ingredient.getIngredientPrices().stream().filter(price1 -> price1.getDate().equals(dateTime)).findFirst().get();
+                    return price.getValue() * ingredient.getQuantity();
+                }))
+                .reduce((double) (0), Double::sum);
     }
 }

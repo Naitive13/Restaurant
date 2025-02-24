@@ -1,19 +1,20 @@
 package com.restaurant.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Ingredient {
-    private int ingredientId;
+    private long ingredientId;
     private String ingredientName;
     private UnitType unit;
-    private int ingredientPrice;
-    private float quantity;
+    private List<Price> ingredientPrices;
+    private double quantity;
 
-    public Ingredient(int ingredientId, String ingredientName, UnitType unit, int ingredientPrice, float quantity) {
+    public Ingredient(long ingredientId, String ingredientName, UnitType unit, List<Price> ingredientPrices, double quantity) {
         this.ingredientId = ingredientId;
         this.ingredientName = ingredientName;
         this.unit = unit;
-        this.ingredientPrice = ingredientPrice;
+        this.ingredientPrices = ingredientPrices;
         this.quantity = quantity;
     }
 
@@ -22,12 +23,12 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return ingredientId == that.ingredientId && ingredientPrice == that.ingredientPrice && Double.compare(quantity, that.quantity) == 0 && Objects.equals(ingredientName, that.ingredientName) && unit == that.unit;
+        return ingredientId == that.ingredientId && Double.compare(quantity, that.quantity) == 0 && Objects.equals(ingredientName, that.ingredientName) && unit == that.unit && Objects.equals(ingredientPrices, that.ingredientPrices);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ingredientId, ingredientName, unit, ingredientPrice, quantity);
+        return Objects.hash(ingredientId, ingredientName, unit, ingredientPrices, quantity);
     }
 
     @Override
@@ -36,12 +37,12 @@ public class Ingredient {
                 "ingredientId=" + ingredientId +
                 ", ingredientName='" + ingredientName + '\'' +
                 ", unit=" + unit +
-                ", ingredientPrice=" + ingredientPrice +
+                ", ingredientPrices=" + ingredientPrices +
                 ", quantity=" + quantity +
                 '}';
     }
 
-    public int getIngredientId() {
+    public long getIngredientId() {
         return ingredientId;
     }
 
@@ -53,11 +54,11 @@ public class Ingredient {
         return unit;
     }
 
-    public int getIngredientPrice() {
-        return ingredientPrice;
+    public List<Price> getIngredientPrices() {
+        return ingredientPrices;
     }
 
-    public float getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 }
