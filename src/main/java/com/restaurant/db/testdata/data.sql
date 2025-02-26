@@ -1,11 +1,11 @@
 INSERT INTO dish (dish_id,dish_name, dish_price)
         VALUES (1,'hotdog', 15000);
 
-INSERT INTO ingredient (ingredient_id, ingredient_name, unit)
-        VALUES  (1,'sausage','G'),
-                (2,'oil','L'),
-                (3,'egg','U'),
-                (4,'bread','U');
+INSERT INTO ingredient (ingredient_id, ingredient_name, unit, last_modified)
+        VALUES  (1,'sausage','G', '2025-01-01 00:00:00'),
+                (2,'oil','L', '2025-01-01 00:00:00'),
+                (3,'egg','U', '2025-01-01 00:00:00'),
+                (4,'bread','U', '2025-01-01 00:00:00');
 
 INSERT INTO ingredient_price (ingredient_id, unit_price, price_date)
         VALUES  (1, 20, '2025-01-01 00:00:00'),
