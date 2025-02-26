@@ -1,13 +1,13 @@
-CREATE DATABASE restaurant;
+create DATABASE restaurant;
 \c restaurant
-CREATE USER db_user WITH PASSWORD '12345678';
-GRANT ALL PRIVILEGES ON database LIBRARY to db_user;
-GRANT ALL PRIVILEGES ON all tables in SCHEMA PUBLIC to db_user;
-GRANT ALL ON SCHEMA PUBLIC to db_user;
+create user db_user with PASSWORD '12345678';
+grant all privileges on database LIBRARY to db_user;
+grant all privileges on all tables in SCHEMA public to db_user;
+grant all on SCHEMA public to db_user;
 
 \c restaurant db_user;
 
-CREATE TYPE unit_type AS ENUM ('G','L','U');
+create type unit_type as ENUM ('G','L','U');
 
 CREATE TABLE IF NOT EXISTS dish (
     dish_id  bigint PRIMARY KEY,
@@ -36,7 +36,18 @@ CREATE TABLE IF NOT EXISTS dish_ingredient (
     UNIQUE (dish_id, ingredient_id)
 );
 
-\c titan titan;
+CREATE TABLE IF NOT EXISTS stock_in (
+    ingredient_id bigint REFERENCES ingredient(ingredient_id),
+    quantity bigint not null,
+    last_modified timestamp not null
+);
+
+CREATE TABLE IF NOT EXISTS stock_out (
+    ingredient_id bigint REFERENCES ingredient(ingredient_id),
+    quantity bigint not null,
+    last_modified timestamp not null
+);
+
 --drop owned by db_user;
 --drop database restaurant;
 --drop role db_user;

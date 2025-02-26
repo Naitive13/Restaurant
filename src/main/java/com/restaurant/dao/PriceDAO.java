@@ -23,10 +23,15 @@ public class PriceDAO implements CrudDAO<Price> {
 
   @Override
   public List<Price> get(List<Criteria> criteriaList, int pageIndex, int pageSize) {
-
     if (pageIndex < 1) {
-      throw new IllegalArgumentException("page must be greater than 0 but actual is " + pageIndex);
+      throw new IllegalArgumentException(
+          "page index must be greater than 0 but actual is " + pageIndex);
     }
+    if (pageSize < 1) {
+      throw new IllegalArgumentException(
+          "page size must be greater than 0 but actual is " + pageIndex);
+    }
+
     List<Price> result = new ArrayList<>();
     String query =
         "SELECT ingredient_id, unit_price, price_date " + "FROM ingredient_price " + "WHERE 1=1 ";
@@ -103,6 +108,7 @@ public class PriceDAO implements CrudDAO<Price> {
   }
 
   @Override
-  public void save(Price element) {}
-
+  public void save(Price element) {
+    throw new RuntimeException("not implemented yet sorry...");
+  }
 }

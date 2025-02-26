@@ -23,10 +23,15 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
 
   @Override
   public List<Ingredient> get(List<Criteria> criteriaList, int pageIndex, int pageSize) {
-
     if (pageIndex < 1) {
-      throw new IllegalArgumentException("page must be greater than 0 but actual is " + pageIndex);
+      throw new IllegalArgumentException(
+          "page index must be greater than 0 but actual is " + pageIndex);
     }
+    if (pageSize < 1) {
+      throw new IllegalArgumentException(
+          "page size must be greater than 0 but actual is " + pageIndex);
+    }
+
     List<Ingredient> result = new ArrayList<>();
     List<Criteria> priceCriteria = new ArrayList<>();
     PriceDAO priceDAO = new PriceDAO();
@@ -138,6 +143,7 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
   }
 
   @Override
-  public void save(Ingredient element) {}
-
+  public void save(Ingredient element) {
+    throw new RuntimeException("not implemented yet sorry...");
+  }
 }

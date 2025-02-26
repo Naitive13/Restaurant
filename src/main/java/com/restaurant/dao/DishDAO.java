@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DishDAO {
+public class DishDAO implements CrudDAO<Dish> {
   private final Datasource datasource;
 
   public DishDAO(Datasource datasource) {
@@ -19,10 +19,17 @@ public class DishDAO {
     this.datasource = new Datasource();
   }
 
+  @Override
   public List<Dish> get(List<Criteria> criteriaList, int pageIndex, int pageSize) {
     if (pageIndex < 1) {
-      throw new IllegalArgumentException("page must be greater than 0 but actual is " + pageIndex);
+      throw new IllegalArgumentException(
+          "page index must be greater than 0 but actual is " + pageIndex);
     }
+    if (pageSize < 1) {
+      throw new IllegalArgumentException(
+          "page size must be greater than 0 but actual is " + pageIndex);
+    }
+
     List<Dish> result = new ArrayList<>();
     List<Criteria> ingredientCriteria = new ArrayList<>();
     IngredientDAO ingredientDAO = new IngredientDAO();
@@ -86,8 +93,7 @@ public class DishDAO {
         Filter dishIngredientFilter = new Filter("dish_id", dishId);
         ingredientCriteria.add(dishIngredientFilter);
 
-        List<Ingredient> ingredientList =
-            ingredientDAO.get(ingredientCriteria, 1, pageSize);
+        List<Ingredient> ingredientList = ingredientDAO.get(ingredientCriteria, 1, pageSize);
         Dish dish =
             new Dish(dishId, rs.getString("dish_name"), rs.getLong("dish_price"), ingredientList);
         result.add(dish);
@@ -99,6 +105,7 @@ public class DishDAO {
     }
   }
 
+  @Override
   public void save(Dish newDish) {
     String query =
         "INSER INTO dish (dish_id,dish_name,dish_price) "

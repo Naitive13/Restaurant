@@ -1,9 +1,9 @@
 package com.restaurant.entities;
 
 public abstract class Criteria {
-    protected String column;
+  protected String column;
 
-    public String getColumn() {
-        return column;
-    }
+  public String getColumn() {
+    return column;
+  }
 }
