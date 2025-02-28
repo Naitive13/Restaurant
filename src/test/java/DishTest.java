@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class DishDaoTest {
+public class DishTest {
   DishDAO subject = new DishDAO();
   LocalDateTime fakeDateTime = LocalDateTime.of(2025, 1, 1, 0, 0, 0);
 

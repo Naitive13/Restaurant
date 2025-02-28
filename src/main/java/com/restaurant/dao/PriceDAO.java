@@ -2,10 +2,7 @@ package com.restaurant.dao;
 
 import com.restaurant.db.Datasource;
 import com.restaurant.entities.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +94,7 @@ public class PriceDAO implements CrudDAO<Price> {
         Price price =
             new Price(
                 rs.getLong("ingredient_id"),
-                rs.getLong("unit_price"),
+                rs.getDouble("unit_price"),
                 rs.getTimestamp("price_date").toLocalDateTime());
         result.add(price);
       }
@@ -108,7 +105,21 @@ public class PriceDAO implements CrudDAO<Price> {
   }
 
   @Override
-  public void save(Price element) {
-    throw new RuntimeException("not implemented yet sorry...");
+  public void save(Price price) {
+    String query =
+        "INSERT INTO ingredient_price "
+            + "(ingredient_id, unit_price, price_date) "
+            + "VALUES (?,?,?)";
+
+    try (Connection connection = this.datasource.getConnection()) {
+      PreparedStatement st = connection.prepareStatement(query);
+      st.setLong(1, price.getIngredientId());
+      st.setDouble(2, price.getValue());
+      st.setTimestamp(3, Timestamp.valueOf(price.getDate()));
+      int rs =st.executeUpdate();
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }

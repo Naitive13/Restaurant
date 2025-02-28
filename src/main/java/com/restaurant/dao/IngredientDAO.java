@@ -39,7 +39,7 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
     String query =
         "SELECT ingredient.ingredient_name, ingredient.ingredient_id, ingredient.unit,"
             + " ingredient.last_modified, dish_ingredient.quantity FROM dish_ingredient  "
-            + "JOIN ingredient ON dish_ingredient.ingredient_id=ingredient.ingredient_id "
+            + "RIGHT JOIN ingredient ON dish_ingredient.ingredient_id=ingredient.ingredient_id "
             + "WHERE 1=1 ";
     String orderBy = " ORDER BY ingredient.ingredient_id ASC";
     LocalDateTime dateTime1 = null, dateTime2 = null;
@@ -143,7 +143,24 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
   }
 
   @Override
-  public void save(Ingredient element) {
-    throw new RuntimeException("not implemented yet sorry...");
+  public void save(Ingredient ingredient) {
+    String query =
+        "INSERT INTO ingredient "
+            + "(ingredient_id, ingredient_name, unit, last_modified) "
+            + "VALUES (?,?,?::unit_type,?)";
+    try (Connection connection = this.datasource.getConnection()) {
+      PreparedStatement st = connection.prepareStatement(query);
+
+      st.setLong(1, ingredient.getIngredientId());
+      st.setString(2, ingredient.getIngredientName());
+      st.setString(3, ingredient.getUnit().toString());
+      st.setTimestamp(4, Timestamp.valueOf(ingredient.getLastModified()));
+      int rs =st.executeUpdate();
+
+      PriceDAO priceDAO = new PriceDAO();
+      ingredient.getIngredientPrices().forEach(priceDAO::save);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }

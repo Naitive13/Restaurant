@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class Price {
   private final long ingredientId;
-  private final long value;
+  private final double value;
   private final LocalDateTime date;
 
-  public Price(long ingredientId, long value, LocalDateTime date) {
+  public Price(long ingredientId, double value, LocalDateTime date) {
     this.ingredientId = ingredientId;
     this.value = value;
     this.date = date;
@@ -34,7 +34,7 @@ public class Price {
     return Objects.hash(ingredientId, value, date);
   }
 
-  public long getValue() {
+  public double getValue() {
     return value;
   }
 
