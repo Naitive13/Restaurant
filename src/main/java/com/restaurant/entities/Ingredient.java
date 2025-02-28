@@ -93,14 +93,12 @@ public class Ingredient {
 
   // my stuff
   public double getAvailableQuantity() {
-    double result = 0;
     double stockIn = new StockInDAO().getTotalForIngredient(this.ingredientId);
     double stockOut = new StockOutDAO().getTotalForIngredient(this.ingredientId);
     return stockIn - stockOut;
   }
 
   public double getAvailableQuantity(LocalDateTime dateTime) {
-    double result = 0;
     double stockIn = new StockInDAO().getTotalForIngredient(this.ingredientId, dateTime);
     double stockOut = new StockOutDAO().getTotalForIngredient(this.ingredientId, dateTime);
     return stockIn - stockOut;

@@ -124,7 +124,7 @@ public class IngredientTest {
     return new Ingredient(
         6,
         "rice",
-        UnitType.L,
+        UnitType.G,
         List.of(new Price(6, 3.5d, LocalDateTime.of(2025, 3, 1, 0, 0, 0))),
         0d,
         LocalDateTime.of(2025, 3, 1, 0, 0, 0));

@@ -36,10 +36,12 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.ingredient" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.dish_ingredient" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.stock_out" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.ingredient_price" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.dish" active-filter-id="fec50dff-0c8a-44f4-a3db-d17573b77f37">
       <filter id="fec50dff-0c8a-44f4-a3db-d17573b77f37" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
+    <filter-actions connection-id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" dataset="public.stock_in" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="dc4c8a94-3930-4a09-bc4a-f8121352c97c" dataset="public.ingredient" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="dc4c8a94-3930-4a09-bc4a-f8121352c97c" dataset="public.dish_ingredient" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="dc4c8a94-3930-4a09-bc4a-f8121352c97c" dataset="public.ingredient_price" active-filter-id="EMPTY_FILTER" />
@@ -69,7 +71,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" active="true" signed="true">
+      <connection id="8ed2cd46-655b-4037-8e00-9d3b5f09caaf" active="false" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />

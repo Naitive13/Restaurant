@@ -160,7 +160,19 @@ public class StockOutDAO implements CrudDAO<Stock> {
   }
 
   @Override
-  public void save(Stock element) {
-    throw new RuntimeException("not implemented yet sorry...");
+  public void save(Stock stock) {
+    String query =
+        "INSERT INTO stock_out " + "(ingredient_id, quantity, last_modified) " + "VALUES (?,?,?)";
+    try (Connection connection = this.datasource.getConnection()) {
+      PreparedStatement st = connection.prepareStatement(query);
+
+      st.setLong(1, stock.getIngredientId());
+      st.setDouble(2, stock.getQuantity());
+      st.setTimestamp(3, Timestamp.valueOf(stock.getLastModified()));
+
+      st.executeUpdate();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }
