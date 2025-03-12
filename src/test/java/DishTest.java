@@ -55,4 +55,18 @@ public class DishTest {
 
     assertEquals(expectedGrossMargin, actualGrossMargin);
   }
+
+  @Test
+  void get_available_quantity (){
+    long expectedResult = 30;
+    // 100 sausage
+    // 133 oil
+    // 80 egg
+    // 30 bread
+
+    Dish dish = subject.get(new ArrayList<>(),1,10).getFirst();
+    long actualResult = dish.getAvailableQuantity();
+
+    assertEquals(expectedResult,actualResult);
+  }
 }

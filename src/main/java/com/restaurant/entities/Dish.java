@@ -103,4 +103,24 @@ public class Dish {
   public double getGrossMargin(LocalDateTime dateTime) {
     return this.dishPrice - this.getProductionCost(dateTime);
   }
+
+  public long getAvailableQuantity() {
+    return this.getIngredientList().stream()
+        .map(
+            ingredient -> {
+              return Math.round(ingredient.getAvailableQuantity() / ingredient.getQuantity());
+            })
+        .min(Long::compare)
+        .orElseThrow();
+  }
+
+  public long getAvailableQuantity(LocalDateTime date) {
+    return this.getIngredientList().stream()
+        .map(
+            ingredient -> {
+              return Math.round(ingredient.getAvailableQuantity(date) / ingredient.getQuantity());
+            })
+        .min(Long::compare)
+        .orElseThrow();
+  }
 }
