@@ -1,6 +1,6 @@
 package com.restaurant.entities;
 
-public enum Order {
+public enum SortOrder {
   ASC,
   DESC
 }

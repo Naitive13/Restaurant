@@ -20,7 +20,7 @@ public class StockTest {
     List<Stock> expected = fakeStockIn();
 
     List<Criteria> criteria = new ArrayList<>();
-    criteria.add(new Sort("ingredient_id", Order.ASC));
+    criteria.add(new Sort("ingredient_id", SortOrder.ASC));
     List<Stock> actual = subjectStockIn.get(criteria, 1, 8);
 
     assertEquals(expected, actual);
@@ -31,7 +31,7 @@ public class StockTest {
     List<Stock> expected = fakeStockOut();
 
     List<Criteria> criteria = new ArrayList<>();
-    criteria.add(new Sort("ingredient_id", Order.ASC));
+    criteria.add(new Sort("ingredient_id", SortOrder.ASC));
     List<Stock> actual = subjectStockOut.get(criteria, 1, 7);
 
     assertEquals(expected, actual);
@@ -44,7 +44,7 @@ public class StockTest {
     subjectStockIn.save(riceStockIn());
     subjectStockIn.save(saltStockIn());
     List<Criteria> criteria = new ArrayList<>();
-    criteria.add(new Sort("last_modified", Order.DESC));
+    criteria.add(new Sort("last_modified", SortOrder.DESC));
     List<Stock> actualResult = subjectStockIn.get(criteria, 1, 2);
 
     assertEquals(expectedResult, actualResult);
@@ -58,7 +58,7 @@ public class StockTest {
     subjectStockOut.save(saltStockOut());
 
     List<Criteria> criteria = new ArrayList<>();
-    criteria.add(new Sort("last_modified", Order.DESC));
+    criteria.add(new Sort("last_modified", SortOrder.DESC));
     List<Stock> actualResult = subjectStockOut.get(criteria, 1, 2);
 
     assertEquals(expectedResult, actualResult);

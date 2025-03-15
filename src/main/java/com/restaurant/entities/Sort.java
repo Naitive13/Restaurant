@@ -3,15 +3,15 @@ package com.restaurant.entities;
 import java.util.Objects;
 
 public class Sort extends Criteria {
-  private final Order order;
+  private final SortOrder sortOrder;
 
-  public Sort(String column, Order order) {
+  public Sort(String column, SortOrder sortOrder) {
     this.column = column;
-    this.order = order;
+    this.sortOrder = sortOrder;
   }
 
-  public Order getOrder() {
-    return order;
+  public SortOrder getOrder() {
+    return sortOrder;
   }
 
   @Override
@@ -19,11 +19,11 @@ public class Sort extends Criteria {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Sort sort = (Sort) o;
-    return Objects.equals(column, sort.column) && order == sort.order;
+    return Objects.equals(column, sort.column) && sortOrder == sort.sortOrder;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(column, order);
+    return Objects.hash(column, sortOrder);
   }
 }

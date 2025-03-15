@@ -66,7 +66,7 @@ public class IngredientTest {
     subject.save(salt());
     subject.save(rice());
     List<Criteria> criteria = new ArrayList<>();
-    criteria.add(new Sort("ingredient_id", Order.DESC));
+    criteria.add(new Sort("ingredient_id", SortOrder.DESC));
     List<Ingredient> actualIngredients = subject.get(criteria, 1, 2);
 
     assertEquals(expectedIngredients, actualIngredients);

@@ -85,8 +85,8 @@ public class StockOutDAO implements CrudDAO<Stock> {
         }
       } else {
         String column = criteria.getColumn();
-        Order order = ((Sort) criteria).getOrder();
-        orderBy = "ORDER BY " + column + " " + order;
+        SortOrder sortOrder = ((Sort) criteria).getOrder();
+        orderBy = "ORDER BY " + column + " " + sortOrder;
       }
     }
     query += orderBy + " LIMIT ? OFFSET ?";
