@@ -109,14 +109,15 @@ public class PriceDAO implements CrudDAO<Price> {
     String query =
         "INSERT INTO ingredient_price "
             + "(ingredient_id, unit_price, price_date) "
-            + "VALUES (?,?,?)";
+            + "VALUES (?,?,?)"
+            + "ON CONFLICT DO NOTHING";
 
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
       st.setLong(1, price.getIngredientId());
       st.setDouble(2, price.getValue());
       st.setTimestamp(3, Timestamp.valueOf(price.getDate()));
-      int rs =st.executeUpdate();
+      int rs = st.executeUpdate();
 
     } catch (Exception e) {
       throw new RuntimeException(e);

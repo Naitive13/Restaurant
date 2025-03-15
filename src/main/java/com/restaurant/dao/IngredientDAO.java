@@ -147,7 +147,8 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
     String query =
         "INSERT INTO ingredient "
             + "(ingredient_id, ingredient_name, unit, last_modified) "
-            + "VALUES (?,?,?::unit_type,?)";
+            + "VALUES (?,?,?::unit_type,?)"
+            + "ON CONFLICT DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 
@@ -155,7 +156,7 @@ public class IngredientDAO implements CrudDAO<Ingredient> {
       st.setString(2, ingredient.getIngredientName());
       st.setString(3, ingredient.getUnit().toString());
       st.setTimestamp(4, Timestamp.valueOf(ingredient.getLastModified()));
-      int rs =st.executeUpdate();
+      int rs = st.executeUpdate();
 
       PriceDAO priceDAO = new PriceDAO();
       ingredient.getIngredientPrices().forEach(priceDAO::save);

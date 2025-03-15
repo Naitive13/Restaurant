@@ -162,7 +162,10 @@ public class StockInDAO implements CrudDAO<Stock> {
   @Override
   public void save(Stock stock) {
     String query =
-        "INSERT INTO stock_in " + "(ingredient_id, quantity, last_modified) " + "VALUES (?,?,?)";
+        "INSERT INTO stock_in "
+            + "(ingredient_id, quantity, last_modified) "
+            + "VALUES (?,?,?)"
+            + "ON CONFLICT DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 

@@ -111,7 +111,7 @@ public class DishDAO implements CrudDAO<Dish> {
         "INSER INTO dish (dish_id,dish_name,dish_price) "
             + "VALUES (?, ?, ?) "
             + "ON CONFLICT (dish_name,dish_id) "
-            + "DO UPDATE SET";
+            + "DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 
