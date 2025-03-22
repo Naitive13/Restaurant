@@ -34,13 +34,25 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/dish_order_status" />
+      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/dish_order" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.order_status" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.sortOrder" active-filter-id="">
+      <filter id="c550187d-0e85-49d0-a1d2-e1d00ca7b322" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="order_reference" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.order" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.dish_order_status" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.stock_in" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" dataset="public.dish_order" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
