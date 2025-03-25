@@ -92,11 +92,11 @@ public class Order {
   public void updateStatus() {
     switch (this.getActualStatus().getStatus()) {
       case CREATED -> {
-        Status status = new Status(CONFIRMED, LocalDateTime.of(2025,1,1,0,0,0));
+        Status status = new Status(CONFIRMED, LocalDateTime.of(2025,2,1,0,0,0));
         this.statusList.add(status);
       }
       case CONFIRMED -> {
-        Status status = new Status(IN_PROGRESS, LocalDateTime.of(2025,2,1,0,0,0));
+        Status status = new Status(IN_PROGRESS, LocalDateTime.of(2025,3,1,0,0,0));
         this.statusList.add(status);
       }
       case IN_PROGRESS -> {
@@ -105,7 +105,7 @@ public class Order {
             .filter(status -> !status.equals(DONE))
             .findAny()
             .isEmpty()) {
-          Status status = new Status(DONE, LocalDateTime.of(2025,1,1,0,0,0));
+          Status status = new Status(DONE, LocalDateTime.of(2025,4,1,0,0,0));
           this.statusList.add(status);
         } else {
           throw new RuntimeException("Some dishes aren't done yet");

@@ -89,11 +89,11 @@ public class DishOrder {
   public void updateStatus(){
     switch (this.getActualStatus().getStatus()){
      case IN_PROGRESS -> {
-          Status status = new Status(DONE, LocalDateTime.now());
+          Status status = new Status(DONE, LocalDateTime.of(2025,3,1,0,0,0));
           this.getStatusList().add(status);
         }
       case DONE -> {
-        Status status = new Status(DELIVERED, LocalDateTime.now());
+        Status status = new Status(DELIVERED, LocalDateTime.of(2025,3,2,0,0,0));
         this.getStatusList().add(status);
       }
       default -> {
