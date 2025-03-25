@@ -1,5 +1,7 @@
 package com.restaurant.entities;
 
+import com.restaurant.dao.DishOrderStatusDAO;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -87,14 +89,22 @@ public class DishOrder {
     return this.getDish().getAvailableQuantity() >= this.getQuantity();
   }
   public void updateStatus(){
+    DishOrderStatusDAO dishOrderStatusDAO = new DishOrderStatusDAO();
     switch (this.getActualStatus().getStatus()){
+      case CREATED -> {
+        Status status = new Status(IN_PROGRESS, LocalDateTime.of(2025,3,1,0,0,0));
+        this.getStatusList().add(status);
+        dishOrderStatusDAO.save(status,this.getId());
+      }
      case IN_PROGRESS -> {
-          Status status = new Status(DONE, LocalDateTime.of(2025,3,1,0,0,0));
+          Status status = new Status(DONE, LocalDateTime.of(2025,3,2,0,0,0));
           this.getStatusList().add(status);
+          dishOrderStatusDAO.save(status,this.getId());
         }
       case DONE -> {
-        Status status = new Status(DELIVERED, LocalDateTime.of(2025,3,2,0,0,0));
+        Status status = new Status(DELIVERED, LocalDateTime.of(2025,3,3,0,0,0));
         this.getStatusList().add(status);
+        dishOrderStatusDAO.save(status,this.getId());
       }
       default -> {
        throw new RuntimeException("cannot update status because it's delivered");

@@ -107,19 +107,18 @@ public class DishOrderStatusDAO {
     }
   }
 
-  public void save(Status status, long dishOrderId, long statusID) {
+  public void save(Status status, long dishOrderId) {
     String query =
         "INSERT INTO dish_order_status "
-            + "(id,dish_order_id, dish_order_status, creation_date) "
-            + "VALUES (?,?,?::status,?)"
+            + "(dish_order_id, dish_order_status, creation_date) "
+            + "VALUES (?,?::status,?)"
             + "ON CONFLICT DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 
-      st.setLong(1, statusID);
-      st.setLong(2, dishOrderId);
-      st.setString(3, status.getStatus().name());
-      st.setTimestamp(4, Timestamp.valueOf(status.getDateTime()));
+      st.setLong(1, dishOrderId);
+      st.setString(2, status.getStatus().name());
+      st.setTimestamp(3, Timestamp.valueOf(status.getDateTime()));
 
       st.executeUpdate();
     } catch (Exception e) {

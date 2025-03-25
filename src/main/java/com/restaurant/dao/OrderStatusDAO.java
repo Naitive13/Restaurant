@@ -107,19 +107,18 @@ public class OrderStatusDAO {
     }
   }
 
-    public void save(Status status, String orderReference, long statusID) {
+    public void save(Status status, String orderReference) {
     String query =
             "INSERT INTO order_status "
-                    + "(id,order_reference, order_status, creation_date) "
-                    + "VALUES (?,?,?::status,?)"
+                    + "(order_reference, order_status, creation_date) "
+                    + "VALUES (?,?::status,?)"
                     + "ON CONFLICT DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 
-      st.setLong(1, statusID);
-      st.setString(2, orderReference);
-      st.setString(3, status.getStatus().name());
-      st.setTimestamp(4, Timestamp.valueOf(status.getDateTime()));
+      st.setString(1, orderReference);
+      st.setString(2, status.getStatus().name());
+      st.setTimestamp(3, Timestamp.valueOf(status.getDateTime()));
 
       st.executeUpdate();
     } catch (Exception e) {

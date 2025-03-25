@@ -1,5 +1,7 @@
 package com.restaurant.entities;
 
+import com.restaurant.dao.OrderStatusDAO;
+
 import static com.restaurant.entities.StatusType.*;
 
 import java.time.LocalDateTime;
@@ -90,14 +92,17 @@ public class Order {
   }
 
   public void updateStatus() {
+    OrderStatusDAO orderStatusDAO = new OrderStatusDAO();
     switch (this.getActualStatus().getStatus()) {
       case CREATED -> {
         Status status = new Status(CONFIRMED, LocalDateTime.of(2025,2,1,0,0,0));
         this.statusList.add(status);
+        orderStatusDAO.save(status,this.getReference());
       }
       case CONFIRMED -> {
         Status status = new Status(IN_PROGRESS, LocalDateTime.of(2025,3,1,0,0,0));
         this.statusList.add(status);
+        orderStatusDAO.save(status,this.getReference());
       }
       case IN_PROGRESS -> {
         if (this.getDishOrderList().stream()
@@ -107,6 +112,7 @@ public class Order {
             .isEmpty()) {
           Status status = new Status(DONE, LocalDateTime.of(2025,4,1,0,0,0));
           this.statusList.add(status);
+          orderStatusDAO.save(status,this.getReference());
         } else {
           throw new RuntimeException("Some dishes aren't done yet");
         }

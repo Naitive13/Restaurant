@@ -34,12 +34,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/order" />
-      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/order_status" />
-      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/dish_order_status" />
-      <object connection-id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" object-ref="schemas/public/tables/dish_order" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" />
@@ -80,7 +75,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" active="true" signed="true">
+      <connection id="f2c7dbce-a593-4c42-960b-b53be3a55bf8" active="false" signed="true">
         <database>
           <name value="resto" />
           <description value="" />

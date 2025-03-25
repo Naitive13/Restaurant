@@ -130,7 +130,7 @@ public class OrderDAO implements CrudDAO<Order> {
 
       OrderStatusDAO orderStatusDAO = new OrderStatusDAO();
       element.getStatusList().forEach(status->{
-        orderStatusDAO.save(status,element.getReference(),1);
+        orderStatusDAO.save(status,element.getReference());
       });
       DishOrderDAO dishOrderDAO = new DishOrderDAO();
       element.getDishOrderList().forEach(dishOrderDAO::save);

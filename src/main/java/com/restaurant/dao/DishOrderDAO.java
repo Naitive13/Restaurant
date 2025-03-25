@@ -141,7 +141,7 @@ public class DishOrderDAO implements CrudDAO<DishOrder> {
       st.executeUpdate();
       DishOrderStatusDAO dishOrderStatusDAO =new DishOrderStatusDAO();
       dishOrder.getStatusList().forEach(status -> {
-        dishOrderStatusDAO.save(status,dishOrder.getId(),1);
+        dishOrderStatusDAO.save(status,dishOrder.getId());
       });
     } catch (Exception e) {
       throw new RuntimeException(e);
