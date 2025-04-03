@@ -18,13 +18,13 @@ public class OrderTest {
 
   private Order newOrder() {
     DishOrder dishOrder =
-        new DishOrder(1, dishDAO.get(new ArrayList<>(), 1, 10).getFirst(), "ORD002", 2);
+        new DishOrder(1, dishDAO.get(new ArrayList<>(), 1, 10).getFirst(), "ORD001", 2);
     Status status = new Status(StatusType.CREATED, LocalDateTime.of(2025, 1, 1, 0, 0, 0));
     List<Status> statusList = new ArrayList<>();
     statusList.add(status);
     List<DishOrder> dishOrderList = new ArrayList<>();
     dishOrderList.add(dishOrder);
-    return new Order("ORD002", LocalDateTime.of(2025, 1, 1, 0, 0, 0), dishOrderList, statusList);
+    return new Order("ORD001", LocalDateTime.of(2025, 1, 1, 0, 0, 0), dishOrderList, statusList);
   }
 
   @Test

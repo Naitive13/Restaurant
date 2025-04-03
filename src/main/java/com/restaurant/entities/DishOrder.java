@@ -1,6 +1,9 @@
 package com.restaurant.entities;
 
 import com.restaurant.dao.DishOrderStatusDAO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +14,9 @@ import java.util.Objects;
 import static com.restaurant.entities.StatusType.*;
 import static java.util.Comparator.naturalOrder;
 
+@EqualsAndHashCode
+@ToString
+@Data
 public class DishOrder {
   private long id;
   private Dish dish;
@@ -34,63 +40,12 @@ public class DishOrder {
     this.statusList.add(new Status(CREATED, LocalDateTime.of(2025,1,1,0,0,0)));
   }
 
-  @Override
-  public String toString() {
-    return "DishOrder{" +
-            "id=" + id +
-            ", dish=" + dish +
-            ", quantity=" + quantity +
-            ", orderReference='" + orderReference + '\'' +
-            ", statusList=" + statusList +
-            '}';
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getOrderReference() {
-    return orderReference;
-  }
-
-  public void setOrderReference(String orderReference) {
-    this.orderReference = orderReference;
-  }
-
-  public Dish getDish() {
-    return dish;
-  }
-
-  public void setDish(Dish dish) {
-    this.dish = dish;
-  }
-
-  public long getQuantity() {
-    return quantity;
-  }
-
-  public void setQuantity(long quantity) {
-    this.quantity = quantity;
-  }
-
-  public List<Status> getStatusList() {
-    return statusList;
-  }
-
-  public void setStatusList(List<Status> statusList) {
-    this.statusList = statusList;
-  }
-
   public boolean isAvailable(){
     return this.getDish().getAvailableQuantity() >= this.getQuantity();
   }
   public void updateStatus(){
     DishOrderStatusDAO dishOrderStatusDAO = new DishOrderStatusDAO();
-    switch (this.getActualStatus().getStatus()){
+    switch (this.getActualStatus().getStatusType()){
       case CREATED -> {
         Status status = new Status(IN_PROGRESS, LocalDateTime.of(2025,3,1,0,0,0));
         this.getStatusList().add(status);
@@ -115,19 +70,7 @@ public class DishOrder {
   public long getTotalAmount(){
     return this.getDish().getDishPrice() * this.getQuantity();
   }
-  @Override
-  public boolean equals(Object o) {
-    if (o == null || getClass() != o.getClass()) return false;
-    DishOrder dishOrder = (DishOrder) o;
-    return quantity == dishOrder.quantity
-        && Objects.equals(dish, dishOrder.dish)
-        && Objects.equals(statusList, dishOrder.statusList);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(dish, quantity, statusList);
-  }
 
   public Status getActualStatus() {
     return this.getStatusList().stream()

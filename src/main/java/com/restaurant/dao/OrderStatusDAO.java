@@ -117,7 +117,7 @@ public class OrderStatusDAO {
       PreparedStatement st = connection.prepareStatement(query);
 
       st.setString(1, orderReference);
-      st.setString(2, status.getStatus().name());
+      st.setString(2, status.getStatusType().name());
       st.setTimestamp(3, Timestamp.valueOf(status.getDateTime()));
 
       st.executeUpdate();

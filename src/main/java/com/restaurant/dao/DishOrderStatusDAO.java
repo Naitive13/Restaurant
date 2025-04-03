@@ -117,7 +117,7 @@ public class DishOrderStatusDAO {
       PreparedStatement st = connection.prepareStatement(query);
 
       st.setLong(1, dishOrderId);
-      st.setString(2, status.getStatus().name());
+      st.setString(2, status.getStatusType().name());
       st.setTimestamp(3, Timestamp.valueOf(status.getDateTime()));
 
       st.executeUpdate();

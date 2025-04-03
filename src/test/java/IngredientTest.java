@@ -14,7 +14,7 @@ public class IngredientTest {
   void get_all_ingredients() {
     List<Ingredient> expected = ingredientList();
 
-    List<Ingredient> actual = subject.get(new ArrayList<>(), 1, 10);
+    List<Ingredient> actual = subject.get(new ArrayList<>(), 1, 4);
 
     assertEquals(expected, actual, "get all ingredient");
   }

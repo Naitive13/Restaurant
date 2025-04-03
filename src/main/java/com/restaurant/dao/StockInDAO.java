@@ -85,7 +85,7 @@ public class StockInDAO implements CrudDAO<Stock> {
         }
       } else {
         String column = criteria.getColumn();
-        SortOrder sortOrder = ((Sort) criteria).getOrder();
+        SortOrder sortOrder = ((Sort) criteria).getSortOrder();
         orderBy = "ORDER BY " + column + " " + sortOrder;
       }
     }

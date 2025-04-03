@@ -70,7 +70,7 @@ public class OrderDAO implements CrudDAO<Order> {
         }
       } else {
         String column = criteria.getColumn();
-        SortOrder sortOrder = ((Sort) criteria).getOrder();
+        SortOrder sortOrder = ((Sort) criteria).getSortOrder();
         orderBy = "ORDER BY " + column + " " + sortOrder;
       }
     }

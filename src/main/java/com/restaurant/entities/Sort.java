@@ -1,29 +1,16 @@
 package com.restaurant.entities;
 
+import lombok.*;
+
 import java.util.Objects;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+@ToString
 public class Sort extends Criteria {
-  private final SortOrder sortOrder;
-
+  private  SortOrder sortOrder;
   public Sort(String column, SortOrder sortOrder) {
-    this.column = column;
+    super(column);
     this.sortOrder = sortOrder;
-  }
-
-  public SortOrder getOrder() {
-    return sortOrder;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Sort sort = (Sort) o;
-    return Objects.equals(column, sort.column) && sortOrder == sort.sortOrder;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(column, sortOrder);
   }
 }

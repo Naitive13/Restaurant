@@ -1,6 +1,9 @@
 package com.restaurant.entities;
 
 import com.restaurant.dao.OrderStatusDAO;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import static com.restaurant.entities.StatusType.*;
 
@@ -10,6 +13,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+@Data
+@EqualsAndHashCode
+@ToString
 public class Order {
   private String reference;
   private LocalDateTime creationDate;
@@ -35,47 +41,6 @@ public class Order {
     this.statusList.add(new Status(CREATED, LocalDateTime.of(2025,1,1,0,0,0)));
   }
 
-  @Override
-  public String toString() {
-    return "Order{" +
-            "reference='" + reference + '\'' +
-            ", creationDate=" + creationDate +
-            ", dishOrderList=" + dishOrderList +
-            ", statusList=" + statusList +
-            '}';
-  }
-
-  public String getReference() {
-    return reference;
-  }
-
-  public void setReference(String reference) {
-    this.reference = reference;
-  }
-
-  public LocalDateTime getCreationDate() {
-    return creationDate;
-  }
-
-  public void setCreationDate(LocalDateTime creationDate) {
-    this.creationDate = creationDate;
-  }
-
-  public List<DishOrder> getDishOrderList() {
-    return dishOrderList;
-  }
-
-  private void setDishOrderList(List<DishOrder> dishOrderList) {
-    this.dishOrderList = dishOrderList;
-  }
-
-  public List<Status> getStatusList() {
-    return statusList;
-  }
-
-  public void setStatusList(List<Status> statusList) {
-    this.statusList = statusList;
-  }
 
   public void addDishOrder(List<DishOrder> target) {
     if(target.stream().allMatch(DishOrder::isAvailable)){
@@ -93,7 +58,7 @@ public class Order {
 
   public void updateStatus() {
     OrderStatusDAO orderStatusDAO = new OrderStatusDAO();
-    switch (this.getActualStatus().getStatus()) {
+    switch (this.getActualStatus().getStatusType()) {
       case CREATED -> {
         Status status = new Status(CONFIRMED, LocalDateTime.of(2025,2,1,0,0,0));
         this.statusList.add(status);
@@ -106,7 +71,7 @@ public class Order {
       }
       case IN_PROGRESS -> {
         if (this.getDishOrderList().stream()
-            .map(dishOrder -> dishOrder.getActualStatus().getStatus())
+            .map(dishOrder -> dishOrder.getActualStatus().getStatusType())
             .filter(status -> !status.equals(DONE))
             .findAny()
             .isEmpty()) {
@@ -127,18 +92,4 @@ public class Order {
     return this.getDishOrderList().stream().map(DishOrder::getTotalAmount).reduce(0L, Long::sum);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (o == null || getClass() != o.getClass()) return false;
-    Order order = (Order) o;
-    return Objects.equals(reference, order.reference)
-        && Objects.equals(creationDate, order.creationDate)
-        && Objects.equals(dishOrderList, order.dishOrderList)
-        && Objects.equals(statusList, order.statusList);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(reference, creationDate, dishOrderList, statusList);
-  }
 }
