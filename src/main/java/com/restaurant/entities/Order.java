@@ -65,7 +65,7 @@ public class Order {
     return dishOrderList;
   }
 
-  public void setDishOrderList(List<DishOrder> dishOrderList) {
+  private void setDishOrderList(List<DishOrder> dishOrderList) {
     this.dishOrderList = dishOrderList;
   }
 

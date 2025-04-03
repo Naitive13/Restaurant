@@ -6,8 +6,12 @@ import com.restaurant.entities.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OrderTest {
   OrderDAO subject = new OrderDAO();
   DishDAO dishDAO = new DishDAO();
@@ -24,6 +28,7 @@ public class OrderTest {
   }
 
   @Test
+  @org.junit.jupiter.api.Order(1)
   void add_new_order() {
     Order expected = newOrder();
 
@@ -34,6 +39,7 @@ public class OrderTest {
   }
 
   @Test
+  @org.junit.jupiter.api.Order(2)
   void update_status() {
     Status expected = new Status(StatusType.CONFIRMED, LocalDateTime.of(2025, 2, 1, 0, 0, 0));
 
@@ -45,6 +51,7 @@ public class OrderTest {
   }
 
   @Test
+  @org.junit.jupiter.api.Order(3)
   void get_total_amount() {
     Order order = newOrder();
     long expected = 30_000;

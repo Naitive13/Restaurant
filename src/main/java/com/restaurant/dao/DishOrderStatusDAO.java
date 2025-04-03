@@ -111,8 +111,8 @@ public class DishOrderStatusDAO {
     String query =
         "INSERT INTO dish_order_status "
             + "(dish_order_id, dish_order_status, creation_date) "
-            + "VALUES (?,?::status,?)"
-            + "ON CONFLICT DO NOTHING";
+            + "VALUES (?,?::statusType,?)"
+    + "ON CONFLICT (dish_order_id, dish_order_status) DO NOTHING";
     try (Connection connection = this.datasource.getConnection()) {
       PreparedStatement st = connection.prepareStatement(query);
 
